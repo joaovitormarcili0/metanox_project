@@ -17,7 +17,7 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const text = `Olá! Meu nome é ${form.name}. ${form.message}. Contato: ${form.phone || form.email}`;
+    const text = `Olá! Meu nome é ${form.name}. ${form.message}. Contato: ${form.phone || form.email} - Vou enviar também as fotos/documentos do projeto logo abaixo!`;
     window.open(
       `https://api.whatsapp.com/send?phone=5548988164249&text=${encodeURIComponent(
         text
