@@ -13,7 +13,7 @@ import Footer from "@/components/Footer";
 
 const produtosSobMedida = [
   {
-    image: "/hero-1.png",
+    image: "/guarda-corpo-inox-conteudo-03.jpg",
     title: "Guarda-corpo",
     description:
       "Guarda-corpos em aço inox para escadas, sacadas, mezaninos e rampas. Modelos com tubo redondo, quadrado, com vidro e combinações.",
