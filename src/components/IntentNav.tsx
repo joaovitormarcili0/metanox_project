@@ -1,9 +1,11 @@
 import { Building2, GlassWater, Accessibility, Home, Puzzle, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useImages } from "@/contexts/ImagesContext";
+import { useCopy } from "@/contexts/CopyContext";
 
 const IntentNav = () => {
   const { getImage } = useImages();
+  const { getCopy } = useCopy();
 
   const intents = [
     {
@@ -48,10 +50,10 @@ const IntentNav = () => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] font-medium mb-4">
-            O que você precisa?
+            {getCopy('intent_subtitle', 'O que você precisa?')}
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            Encontre a solução ideal
+            {getCopy('intent_title', 'Encontre a solução ideal')}
           </h2>
         </div>
 

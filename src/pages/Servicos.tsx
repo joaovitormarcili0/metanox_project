@@ -4,8 +4,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useImages } from "@/contexts/ImagesContext";
+import { useCopy } from "@/contexts/CopyContext";
 const Servicos = () => {
   const { getImage } = useImages();
+  const { getCopy } = useCopy();
 
   const services = [
     {
@@ -66,11 +68,11 @@ const Servicos = () => {
             <div className="inline-flex items-center gap-2 border border-background/20 rounded-full px-4 py-2 mb-6">
               <span className="text-sm text-background/80 font-medium">Serviços Industriais</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-background mb-6">
-              Corte a Laser e <span className="text-background/60">Dobra CNC</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-background mb-6 whitespace-pre-line">
+              {getCopy('servicos_title', 'Corte a Laser e Dobra CNC')}
             </h1>
-            <p className="text-lg text-background/70 max-w-2xl">
-              Equipamentos de última geração para corte a laser de chapas e tubos, e dobras CNC com precisão milimétrica. Solicite seu orçamento.
+            <p className="text-lg text-background/70 max-w-2xl whitespace-pre-line">
+              {getCopy('servicos_subtitle', 'Equipamentos de última geração para corte a laser de chapas e tubos, e dobras CNC com precisão milimétrica. Solicite seu orçamento.')}
             </p>
           </div>
         </div>

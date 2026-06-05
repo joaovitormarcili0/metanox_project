@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useImages } from "@/contexts/ImagesContext";
+import { useCopy } from "@/contexts/CopyContext";
 
 const stats = [
   { value: 26, suffix: "", label: "Anos de Experiência" },
@@ -58,6 +59,7 @@ const AnimatedCounter = ({
 
 const AboutSection = () => {
   const { getImage } = useImages();
+  const { getCopy } = useCopy();
 
   return (
     <section id="sobre" className="py-24 bg-background">
@@ -81,25 +83,12 @@ const AboutSection = () => {
               Quem Somos
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 leading-tight">
-              Excelência em aço inox
-              <br />
-              <span className="text-muted-foreground">desde 2000.</span>
+              {getCopy('about_title', 'Excelência em aço inox desde 2000.')}
             </h2>
-            <div className="space-y-5 text-muted-foreground leading-relaxed text-[15px]">
-              <p>
-                A <strong className="text-foreground">Metanox Metalúrgica</strong> atua
-                na transformação do aço inoxidável, oferecendo soluções completas para
-                construção civil, arquitetura, indústria e decoração.
-              </p>
-              <p>
-                Com um parque fabril de 1.450m² em Palhoça/SC, investimos constantemente
-                em tecnologia e capacitação para garantir produtos com acabamento
-                impecável e durabilidade superior.
-              </p>
-              <p>
-                Atendemos desde arquitetos e construtoras até clientes finais em todo o
-                Brasil, com a mesma qualidade e dedicação em cada projeto.
-              </p>
+            <div className="space-y-5 text-muted-foreground leading-relaxed text-[15px] whitespace-pre-line">
+              {getCopy('about_description_1', 'A Metanox Metalúrgica atua na transformação do aço inoxidável, oferecendo soluções completas para construção civil, arquitetura, indústria e decoração.')}
+              <br /><br />
+              {getCopy('about_description_2', 'Com um parque fabril de 1.450m² em Palhoça/SC, investimos constantemente em tecnologia e capacitação para garantir produtos com acabamento impecável e durabilidade superior.\n\nAtendemos desde arquitetos e construtoras até clientes finais em todo o Brasil, com a mesma qualidade e dedicação em cada projeto.')}
             </div>
           </div>
 

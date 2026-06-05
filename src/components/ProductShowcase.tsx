@@ -1,8 +1,10 @@
 import { ArrowRight } from "lucide-react";
 import { useImages } from "@/contexts/ImagesContext";
+import { useCopy } from "@/contexts/CopyContext";
 
 const ProductShowcase = () => {
   const { getImage } = useImages();
+  const { getCopy } = useCopy();
 
   const products = [
     {
@@ -49,10 +51,10 @@ const ProductShowcase = () => {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-16">
           <div>
             <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] font-medium mb-4">
-              Nossos Produtos
+              {getCopy('showcase_subtitle', 'Nossos Produtos')}
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Produtos em contexto real
+              {getCopy('showcase_title', 'Produtos em contexto real')}
             </h2>
           </div>
           <a

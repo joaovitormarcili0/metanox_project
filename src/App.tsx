@@ -10,6 +10,7 @@ import Produtos from "./pages/Produtos.tsx";
 import Orcamento from "./pages/Orcamento.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import { ImagesProvider } from "./contexts/ImagesContext.tsx";
+import { CopyProvider } from "./contexts/CopyContext.tsx";
 import AdminLayout from "./layouts/AdminLayout.tsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
 
@@ -28,8 +29,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ImagesProvider>
-          <Routes>
-            <Route path="/" element={<Index />} />
+          <CopyProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
             <Route path="/servicos" element={<Servicos />} />
             <Route path="/produtos" element={<Produtos />} />
             <Route path="/orcamento" element={<Orcamento />} />
@@ -40,8 +42,9 @@ const App = () => (
             </Route>
 
             <Route path="*" element={<NotFound />} />
-          </Routes>
-          <GlobalWhatsApp />
+            </Routes>
+            <GlobalWhatsApp />
+          </CopyProvider>
         </ImagesProvider>
       </BrowserRouter>
     </TooltipProvider>

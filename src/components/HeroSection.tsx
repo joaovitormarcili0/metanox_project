@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 import { useImages } from "@/contexts/ImagesContext";
+import { useCopy } from "@/contexts/CopyContext";
 
 const HeroSection = () => {
   const { getImage } = useImages();
+  const { getCopy } = useCopy();
   const [current, setCurrent] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -80,17 +82,12 @@ const HeroSection = () => {
 
           {/* Headline */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-8 tracking-tight">
-            Acabamento em
-            <br />
-            aço inox que
-            <br />
-            <span className="text-white/60">dura décadas.</span>
+            {getCopy('hero_title', 'Acabamento em aço inox que dura décadas.')}
           </h1>
 
           {/* Sub */}
-          <p className="text-lg md:text-xl text-white/60 leading-relaxed mb-12 max-w-lg">
-            Produtos padrão e sob medida com qualidade profissional.
-            Fabricamos e entregamos para todo o Brasil.
+          <p className="text-lg md:text-xl text-white/60 leading-relaxed mb-12 max-w-lg whitespace-pre-line">
+            {getCopy('hero_subtitle', 'Produtos padrão e sob medida com qualidade profissional.\nFabricamos e entregamos para todo o Brasil.')}
           </p>
 
           {/* CTAs */}
@@ -100,7 +97,7 @@ const HeroSection = () => {
                 size="lg"
                 className="bg-white text-foreground hover:bg-white/90 gap-2 text-[15px] font-medium px-8 rounded-full w-full sm:w-auto h-13"
               >
-                Ver Produtos
+                {getCopy('hero_button_primary', 'Ver Produtos')}
                 <ArrowRight size={18} />
               </Button>
             </Link>
@@ -111,8 +108,9 @@ const HeroSection = () => {
                 className="bg-transparent border-white/30 text-white hover:bg-white/10 gap-2 text-[15px] font-medium px-8 rounded-full w-full sm:w-auto h-13 backdrop-blur-sm"
               >
                 <MessageCircle size={18} />
-                Solicitar Orçamento
+                {getCopy('hero_button_secondary', 'Solicitar Orçamento')}
               </Button>
+
             </Link>
           </div>
 

@@ -9,12 +9,14 @@ import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useImages } from "@/contexts/ImagesContext";
+import { useCopy } from "@/contexts/CopyContext";
 
 /* ───────────────────────── PRODUTOS SOB MEDIDA ───────────────────────── */
 /* ───────────────────────── PAGE COMPONENT ───────────────────────── */
 
 const Produtos = () => {
   const { getImage } = useImages();
+  const { getCopy } = useCopy();
 
   const produtosSobMedida = [
     {
@@ -202,13 +204,11 @@ const Produtos = () => {
                 Catálogo Completo
               </span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-background mb-6">
-              Nossos <span className="text-background/60">Produtos</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-background mb-6 whitespace-pre-line">
+              {getCopy('produtos_title', 'Nossos Produtos')}
             </h1>
-            <p className="text-lg text-background/70 max-w-2xl">
-              Mais de 20 anos desenvolvendo soluções em aço inox. Conheça nosso
-              catálogo completo de produtos sob medida e nossa loja online com
-              produtos prontos para envio.
+            <p className="text-lg text-background/70 max-w-2xl whitespace-pre-line">
+              {getCopy('produtos_subtitle', 'Mais de 20 anos desenvolvendo soluções em aço inox. Conheça nosso catálogo completo de produtos sob medida e nossa loja online com produtos prontos para envio.')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
               <a href="#sob-medida">
@@ -243,7 +243,7 @@ const Produtos = () => {
               Fabricação Própria
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Produtos Sob Medida
+              {getCopy('produtos_sobmedida_title', 'Produtos Sob Medida')}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Projetos personalizados em aço inox, desenvolvidos e fabricados de
@@ -328,7 +328,7 @@ const Produtos = () => {
               Pronta Entrega
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Loja Online
+              {getCopy('produtos_loja_title', 'Loja Online')}
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
               Produtos padronizados em aço inox prontos para envio. Ferragens,

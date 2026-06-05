@@ -2,9 +2,11 @@ import { ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useImages } from "@/contexts/ImagesContext";
+import { useCopy } from "@/contexts/CopyContext";
 
 const FinalCTA = () => {
   const { getImage } = useImages();
+  const { getCopy } = useCopy();
   const bgImage = getImage('final_cta_bg', '');
 
   return (
@@ -26,15 +28,12 @@ const FinalCTA = () => {
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 max-w-3xl mx-auto">
-          Pronto para elevar o padrão
-          <br />
-          <span className="text-background/50">do seu projeto?</span>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 max-w-3xl mx-auto whitespace-pre-line">
+          {getCopy('final_cta_title', 'Pronto para elevar o padrão\ndo seu projeto?')}
         </h2>
 
-        <p className="text-lg text-background/50 max-w-xl mx-auto mb-12">
-          Fale com um especialista e descubra a solução ideal em aço inox para
-          sua obra ou projeto.
+        <p className="text-lg text-background/50 max-w-xl mx-auto mb-12 whitespace-pre-line">
+          {getCopy('final_cta_desc', 'Fale com um especialista e descubra a solução ideal em aço inox para sua obra ou projeto.')}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

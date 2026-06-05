@@ -1,9 +1,11 @@
 import { MessageCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useImages } from "@/contexts/ImagesContext";
+import { useCopy } from "@/contexts/CopyContext";
 
 const CustomProject = () => {
   const { getImage } = useImages();
+  const { getCopy } = useCopy();
 
   return (
     <section className="py-24 bg-foreground text-background">
@@ -27,16 +29,12 @@ const CustomProject = () => {
               </span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-              Precisa de um projeto
-              <br />
-              <span className="text-background/50">personalizado?</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 whitespace-pre-line">
+              {getCopy('custom_project_title', 'Precisa de um projeto\npersonalizado?')}
             </h2>
 
-            <p className="text-lg text-background/60 leading-relaxed mb-10 max-w-lg">
-              Desenvolvemos soluções sob medida para sua obra com precisão e
-              acabamento profissional. Envie seu projeto e receba um orçamento
-              em até 24 horas.
+            <p className="text-lg text-background/60 leading-relaxed mb-10 max-w-lg whitespace-pre-line">
+              {getCopy('custom_project_desc', 'Desenvolvemos soluções sob medida para sua obra com precisão e acabamento profissional. Envie seu projeto e receba um orçamento em até 24 horas.')}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
