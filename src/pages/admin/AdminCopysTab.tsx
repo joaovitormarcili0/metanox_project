@@ -9,42 +9,42 @@ import { WebsiteCopy } from '@/contexts/CopyContext';
 
 const AVAILABLE_COPYS = [
   // Hero
-  { id: 'hero_title', category: 'Hero', desc: 'Título Principal', type: 'input' },
-  { id: 'hero_subtitle', category: 'Hero', desc: 'Subtítulo', type: 'textarea' },
-  { id: 'hero_button_primary', category: 'Hero', desc: 'Botão Principal', type: 'input' },
-  { id: 'hero_button_secondary', category: 'Hero', desc: 'Botão Secundário', type: 'input' },
+  { id: 'hero_title', category: 'Hero', desc: 'Título Principal', type: 'input', defaultText: 'Acabamento em aço inox que dura décadas.' },
+  { id: 'hero_subtitle', category: 'Hero', desc: 'Subtítulo', type: 'textarea', defaultText: 'Produtos padrão e sob medida com qualidade profissional.\nFabricamos e entregamos para todo o Brasil.' },
+  { id: 'hero_button_primary', category: 'Hero', desc: 'Botão Principal', type: 'input', defaultText: 'Ver Produtos' },
+  { id: 'hero_button_secondary', category: 'Hero', desc: 'Botão Secundário', type: 'input', defaultText: 'Solicitar Orçamento' },
 
   // Quem Somos
-  { id: 'about_title', category: 'Quem Somos', desc: 'Título da Seção', type: 'input' },
-  { id: 'about_subtitle', category: 'Quem Somos', desc: 'Subtítulo', type: 'textarea' },
-  { id: 'about_description_1', category: 'Quem Somos', desc: 'Parágrafo 1', type: 'textarea' },
-  { id: 'about_description_2', category: 'Quem Somos', desc: 'Parágrafo 2', type: 'textarea' },
+  { id: 'about_title', category: 'Quem Somos', desc: 'Título da Seção', type: 'input', defaultText: 'Excelência em aço inox desde 2000.' },
+  { id: 'about_subtitle', category: 'Quem Somos', desc: 'Subtítulo', type: 'textarea', defaultText: '' },
+  { id: 'about_description_1', category: 'Quem Somos', desc: 'Parágrafo 1', type: 'textarea', defaultText: 'A Metanox Metalúrgica atua na transformação do aço inoxidável, oferecendo soluções completas para construção civil, arquitetura, indústria e decoração.' },
+  { id: 'about_description_2', category: 'Quem Somos', desc: 'Parágrafo 2', type: 'textarea', defaultText: 'Com um parque fabril de 1.450m² em Palhoça/SC, investimos constantemente em tecnologia e capacitação para garantir produtos com acabamento impecável e durabilidade superior.\n\nAtendemos desde arquitetos e construtoras até clientes finais em todo o Brasil, com a mesma qualidade e dedicação em cada projeto.' },
   
   // Busca Rápida
-  { id: 'intent_title', category: 'Busca Rápida', desc: 'Título da Seção', type: 'input' },
-  { id: 'intent_subtitle', category: 'Busca Rápida', desc: 'Subtítulo', type: 'input' },
+  { id: 'intent_title', category: 'Busca Rápida', desc: 'Título da Seção', type: 'input', defaultText: 'Encontre a solução ideal' },
+  { id: 'intent_subtitle', category: 'Busca Rápida', desc: 'Subtítulo', type: 'input', defaultText: 'O que você precisa?' },
 
   // Destaques
-  { id: 'showcase_title', category: 'Destaques', desc: 'Título da Seção', type: 'input' },
-  { id: 'showcase_subtitle', category: 'Destaques', desc: 'Subtítulo', type: 'input' },
+  { id: 'showcase_title', category: 'Destaques', desc: 'Título da Seção', type: 'input', defaultText: 'Produtos em contexto real' },
+  { id: 'showcase_subtitle', category: 'Destaques', desc: 'Subtítulo', type: 'input', defaultText: 'Nossos Produtos' },
   
   // Custom Project
-  { id: 'custom_project_title', category: 'Projetos Especiais', desc: 'Título', type: 'input' },
-  { id: 'custom_project_desc', category: 'Projetos Especiais', desc: 'Descrição', type: 'textarea' },
+  { id: 'custom_project_title', category: 'Projetos Especiais', desc: 'Título', type: 'input', defaultText: 'Precisa de um projeto\npersonalizado?' },
+  { id: 'custom_project_desc', category: 'Projetos Especiais', desc: 'Descrição', type: 'textarea', defaultText: 'Desenvolvemos soluções sob medida para sua obra com precisão e acabamento profissional. Envie seu projeto e receba um orçamento em até 24 horas.' },
 
   // Produtos
-  { id: 'produtos_title', category: 'Página de Produtos', desc: 'Título Hero', type: 'input' },
-  { id: 'produtos_subtitle', category: 'Página de Produtos', desc: 'Subtítulo Hero', type: 'textarea' },
-  { id: 'produtos_sobmedida_title', category: 'Página de Produtos', desc: 'Título Sob Medida', type: 'input' },
-  { id: 'produtos_loja_title', category: 'Página de Produtos', desc: 'Título Loja', type: 'input' },
+  { id: 'produtos_title', category: 'Página de Produtos', desc: 'Título Hero', type: 'input', defaultText: 'Nossos Produtos' },
+  { id: 'produtos_subtitle', category: 'Página de Produtos', desc: 'Subtítulo Hero', type: 'textarea', defaultText: 'Mais de 20 anos desenvolvendo soluções em aço inox. Conheça nosso catálogo completo de produtos sob medida e nossa loja online com produtos prontos para envio.' },
+  { id: 'produtos_sobmedida_title', category: 'Página de Produtos', desc: 'Título Sob Medida', type: 'input', defaultText: 'Produtos Sob Medida' },
+  { id: 'produtos_loja_title', category: 'Página de Produtos', desc: 'Título Loja', type: 'input', defaultText: 'Loja Online' },
 
   // Serviços
-  { id: 'servicos_title', category: 'Página de Serviços', desc: 'Título Hero', type: 'input' },
-  { id: 'servicos_subtitle', category: 'Página de Serviços', desc: 'Subtítulo Hero', type: 'textarea' },
+  { id: 'servicos_title', category: 'Página de Serviços', desc: 'Título Hero', type: 'input', defaultText: 'Corte a Laser e Dobra CNC' },
+  { id: 'servicos_subtitle', category: 'Página de Serviços', desc: 'Subtítulo Hero', type: 'textarea', defaultText: 'Equipamentos de última geração para corte a laser de chapas e tubos, e dobras CNC com precisão milimétrica. Solicite seu orçamento.' },
   
   // Final CTA
-  { id: 'final_cta_title', category: 'Rodapé CTA', desc: 'Título', type: 'input' },
-  { id: 'final_cta_desc', category: 'Rodapé CTA', desc: 'Descrição', type: 'textarea' },
+  { id: 'final_cta_title', category: 'Rodapé CTA', desc: 'Título', type: 'input', defaultText: 'Pronto para elevar o padrão\ndo seu projeto?' },
+  { id: 'final_cta_desc', category: 'Rodapé CTA', desc: 'Descrição', type: 'textarea', defaultText: 'Fale com um especialista e descubra a solução ideal em aço inox para sua obra ou projeto.' },
 ];
 
 export const AdminCopysTab = () => {
@@ -152,14 +152,14 @@ export const AdminCopysTab = () => {
                       {slot.type === 'textarea' ? (
                         <Textarea
                           placeholder="Digite o texto aqui..."
-                          value={copys[slot.id] || ''}
+                          value={copys[slot.id] ?? slot.defaultText}
                           onChange={(e) => handleInputChange(slot.id, e.target.value)}
                           className="min-h-[100px] text-sm"
                         />
                       ) : (
                         <Input
                           placeholder="Digite o texto aqui..."
-                          value={copys[slot.id] || ''}
+                          value={copys[slot.id] ?? slot.defaultText}
                           onChange={(e) => handleInputChange(slot.id, e.target.value)}
                           className="text-sm"
                         />
