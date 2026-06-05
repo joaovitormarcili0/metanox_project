@@ -1,25 +1,65 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Lock, ShieldAlert } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { supabase } from '@/lib/supabase';
 
 const AdminLayout = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  useEffect(() => {
+    // Check initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsAuthenticated(!!session);
+      setLoading(false);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsAuthenticated(!!session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Static MVP Auth
-    if (username === 'admin' && password === 'admin') {
-      setIsAuthenticated(true);
-      setError(false);
-    } else {
+    setError(false);
+    setIsLoggingIn(true);
+    
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        setError(true);
+      }
+    } catch (err) {
       setError(true);
+    } finally {
+      setIsLoggingIn(false);
     }
   };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <p className="text-muted-foreground">Verificando sessão...</p>
+      </div>
+    );
+  }
 
   if (!isAuthenticated) {
     return (
@@ -41,25 +81,27 @@ const AdminLayout = () => {
               </div>
             )}
             <div className="space-y-2">
-              <label className="text-sm font-medium">Usuário</label>
+              <label className="text-sm font-medium">E-mail</label>
               <Input 
-                type="text" 
-                placeholder="admin" 
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                type="email" 
+                placeholder="admin@metanox.com.br" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium">Senha</label>
               <Input 
                 type="password" 
-                placeholder="••••••" 
+                placeholder="••••••••" 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
-            <Button type="submit" className="w-full h-12 text-base mt-2">
-              Entrar no Painel
+            <Button type="submit" className="w-full h-12 text-base mt-2" disabled={isLoggingIn}>
+              {isLoggingIn ? 'Entrando...' : 'Entrar no Painel'}
             </Button>
           </form>
         </div>
@@ -78,7 +120,7 @@ const AdminLayout = () => {
             </div>
             <span className="font-bold text-lg">Metanox Admin</span>
           </div>
-          <Button variant="ghost" size="sm" onClick={() => setIsAuthenticated(false)}>
+          <Button variant="ghost" size="sm" onClick={handleLogout}>
             Sair
           </Button>
         </div>
