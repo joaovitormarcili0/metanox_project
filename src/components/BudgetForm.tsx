@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { storage, db } from "@/lib/firebase";
+import { supabase } from "@/lib/supabase";
 import { sendBudgetEmail } from "@/lib/email";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,19 +35,19 @@ const BudgetForm = () => {
     resolver: zodResolver(formSchema)
   });
 
-  // Verify EmailJS Quota from Firestore on Load
+  // Verify EmailJS Quota from Supabase on Load
   useEffect(() => {
     const checkQuota = async () => {
       try {
         const currentMonth = new Date().toISOString().slice(0, 7);
-        const docRef = doc(db, "system", "email_quota");
-        const docSnap = await getDoc(docRef);
+        const { data, error } = await supabase
+          .from("email_quota")
+          .select("is_exhausted")
+          .eq("month", currentMonth)
+          .single();
         
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          if (data.month === currentMonth && data.isExhausted) {
-            setIsQuotaExhausted(true);
-          }
+        if (data && data.is_exhausted) {
+          setIsQuotaExhausted(true);
         }
       } catch (err) {
         console.error("Erro ao checar cota:", err);
@@ -62,10 +60,9 @@ const BudgetForm = () => {
   const markQuotaExhausted = async () => {
     try {
       const currentMonth = new Date().toISOString().slice(0, 7);
-      await setDoc(doc(db, "system", "email_quota"), {
-        month: currentMonth,
-        isExhausted: true
-      });
+      await supabase
+        .from("email_quota")
+        .upsert({ month: currentMonth, is_exhausted: true }, { onConflict: "month" });
       setIsQuotaExhausted(true);
     } catch (err) {
       console.error("Failed to mark quota:", err);
@@ -83,33 +80,35 @@ const BudgetForm = () => {
     }
 
     setIsSubmitting(true);
-    setUploadProgress(0);
+    setUploadProgress(10); // Indicate start
 
     try {
-      // 1. Upload file to Firebase Storage
-      const storageRef = ref(storage, `orcamentos/${Date.now()}_${file.name}`);
-      const uploadTask = uploadBytesResumable(storageRef, file);
+      // 1. Upload file to Supabase Storage
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}_${Math.random().toString(36).substring(7)}.${fileExt}`;
+      
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from('orcamentos')
+        .upload(fileName, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
 
-      const downloadURL = await new Promise<string>((resolve, reject) => {
-        uploadTask.on(
-          "state_changed",
-          (snapshot) => {
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            setUploadProgress(progress);
-          },
-          (error) => reject(error),
-          async () => {
-            const url = await getDownloadURL(uploadTask.snapshot.ref);
-            resolve(url);
-          }
-        );
-      });
+      if (uploadError) {
+        throw uploadError;
+      }
+      setUploadProgress(100);
 
-      // 2. Send Email via EmailJS
+      // 2. Get Public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('orcamentos')
+        .getPublicUrl(fileName);
+
+      // 3. Send Email via EmailJS
       try {
         await sendBudgetEmail({
           ...data,
-          link_projeto: downloadURL,
+          link_projeto: publicUrl,
         });
         setIsSuccess(true);
         reset();
@@ -122,7 +121,7 @@ const BudgetForm = () => {
           await markQuotaExhausted();
           toast.error("O limite de orçamentos online foi atingido. Redirecionando para o WhatsApp...");
           // Fallback manually sending to Whatsapp
-          const msg = `Olá! Vim pelo site e gostaria de solicitar um orçamento sob medida.\n\nNome: ${data.nome}\nTelefone: ${data.telefone}\nCidade: ${data.cidade}\n\nO meu projeto é esse e já vou enviar as fotos/plantas logo abaixo!\nObs (Link do arquivo que tentei subir no site): ${downloadURL}`;
+          const msg = `Olá! Vim pelo site e gostaria de solicitar um orçamento sob medida.\n\nNome: ${data.nome}\nTelefone: ${data.telefone}\nCidade: ${data.cidade}\n\nO meu projeto é esse e já vou enviar as fotos/plantas logo abaixo!\nObs (Link do arquivo que tentei subir no site): ${publicUrl}`;
           window.open(`https://api.whatsapp.com/send?phone=5548988164249&text=${encodeURIComponent(msg)}`, "_blank");
         } else {
           toast.error("Erro inesperado ao enviar o e-mail. Tente via WhatsApp.");
@@ -251,7 +250,7 @@ const BudgetForm = () => {
 
         <Button type="submit" className="w-full h-14 text-base font-medium rounded-xl" disabled={isSubmitting}>
           {isSubmitting ? (
-            uploadProgress < 100 ? `Enviando Arquivo (${Math.round(uploadProgress)}%)...` : "Processando..."
+            uploadProgress < 100 ? `Enviando Arquivo...` : "Processando..."
           ) : (
             "Enviar Orçamento Oficial"
           )}
