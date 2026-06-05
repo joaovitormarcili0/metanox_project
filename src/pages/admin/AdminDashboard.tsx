@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
 import { Save, RefreshCw, Image as ImageIcon } from 'lucide-react';
 import { WebsiteImage } from '@/contexts/ImagesContext';
+import availableImages from '@/data/available-images.json';
 
 // Catálogo fixo de slots que existem no site
 const AVAILABLE_SLOTS = [
@@ -137,13 +138,33 @@ const AdminDashboard = () => {
                       <p className="text-xs text-muted-foreground mt-1">{slot.desc}</p>
                     </div>
                     
+                    {/* Image Preview */}
+                    <div className="w-full aspect-[4/3] bg-muted rounded-md overflow-hidden border border-border/50">
+                      {images[slot.id] ? (
+                        <img 
+                          src={images[slot.id]} 
+                          alt="Preview" 
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex flex-col items-center justify-center text-muted-foreground/50">
+                          <ImageIcon className="h-8 w-8 mb-2 opacity-50" />
+                          <span className="text-xs font-medium">Sem imagem</span>
+                        </div>
+                      )}
+                    </div>
+
                     <div className="mt-auto space-y-3">
-                      <Input
-                        placeholder="Ex: /nova-foto.jpg"
+                      <select
                         value={images[slot.id] || ''}
                         onChange={(e) => handleInputChange(slot.id, e.target.value)}
-                        className="font-mono text-sm"
-                      />
+                        className="flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        <option value="">-- Selecione uma imagem --</option>
+                        {availableImages.map(img => (
+                          <option key={img} value={img}>{img}</option>
+                        ))}
+                      </select>
                       <Button 
                         onClick={() => handleSave(slot.id, slot.category, slot.desc)}
                         disabled={saving === slot.id}

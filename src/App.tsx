@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,6 +14,12 @@ import AdminLayout from "./layouts/AdminLayout.tsx";
 import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
 
 const queryClient = new QueryClient();
+
+const GlobalWhatsApp = () => {
+  const location = useLocation();
+  if (location.pathname.startsWith('/admin')) return null;
+  return <WhatsAppFloat />;
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -35,7 +41,7 @@ const App = () => (
 
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <WhatsAppFloat />
+          <GlobalWhatsApp />
         </ImagesProvider>
       </BrowserRouter>
     </TooltipProvider>
