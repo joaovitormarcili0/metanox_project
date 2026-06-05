@@ -78,11 +78,7 @@ const Header = () => {
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="https://api.whatsapp.com/send?phone=5548988164249&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20sob%20medida.%20O%20meu%20projeto%20%C3%A9%20esse%20e%20j%C3%A1%20vou%20enviar%20as%20fotos%2Fplantas%20logo%20abaixo!"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link to="/orcamento">
               <Button
                 className={`gap-2 text-[13px] font-medium rounded-full px-6 transition-all duration-300 ${
                   scrolled
@@ -93,7 +89,7 @@ const Header = () => {
                 Solicitar Orçamento
                 <ArrowRight size={14} />
               </Button>
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Toggle */}
@@ -121,17 +117,12 @@ const Header = () => {
                   {link.label}
                 </Link>
               ))}
-              <a
-                href="https://api.whatsapp.com/send?phone=5548988164249&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20sob%20medida.%20O%20meu%20projeto%20%C3%A9%20esse%20e%20j%C3%A1%20vou%20enviar%20as%20fotos%2Fplantas%20logo%20abaixo!"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6"
-              >
+              <Link to="/orcamento" className="mt-6">
                 <Button className="w-full bg-foreground text-background hover:bg-foreground/90 gap-2 rounded-full text-base py-6">
                   Solicitar Orçamento
                   <ArrowRight size={16} />
                 </Button>
-              </a>
+              </Link>
             </nav>
           </div>
         )}

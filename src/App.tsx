@@ -7,6 +7,7 @@ import WhatsAppFloat from "@/components/WhatsAppFloat";
 import Index from "./pages/Index.tsx";
 import Servicos from "./pages/Servicos.tsx";
 import Produtos from "./pages/Produtos.tsx";
+import Orcamento from "./pages/Orcamento.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/servicos" element={<Servicos />} />
           <Route path="/produtos" element={<Produtos />} />
+          <Route path="/orcamento" element={<Orcamento />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <WhatsAppFloat />

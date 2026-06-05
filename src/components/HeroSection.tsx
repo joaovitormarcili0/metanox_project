@@ -101,11 +101,7 @@ const HeroSection = () => {
                 <ArrowRight size={18} />
               </Button>
             </Link>
-            <a
-              href="https://api.whatsapp.com/send?phone=5548988164249&text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento%20sob%20medida.%20O%20meu%20projeto%20%C3%A9%20esse%20e%20j%C3%A1%20vou%20enviar%20as%20fotos%2Fplantas%20logo%20abaixo!"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <Link to="/orcamento">
               <Button
                 size="lg"
                 variant="outline"
@@ -114,7 +110,7 @@ const HeroSection = () => {
                 <MessageCircle size={18} />
                 Solicitar Orçamento
               </Button>
-            </a>
+            </Link>
           </div>
 
           {/* Stats Bar */}
