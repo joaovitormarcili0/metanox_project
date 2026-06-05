@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import { Save, RefreshCw, Image as ImageIcon } from 'lucide-react';
 import { WebsiteImage } from '@/contexts/ImagesContext';
 import availableImages from '@/data/available-images.json';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 // Catálogo fixo de slots que existem no site
 const AVAILABLE_SLOTS = [
@@ -155,16 +156,26 @@ const AdminDashboard = () => {
                     </div>
 
                     <div className="mt-auto space-y-3">
-                      <select
+                      <Select
                         value={images[slot.id] || ''}
-                        onChange={(e) => handleInputChange(slot.id, e.target.value)}
-                        className="flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                        onValueChange={(value) => handleInputChange(slot.id, value)}
                       >
-                        <option value="">-- Selecione uma imagem --</option>
-                        {availableImages.map(img => (
-                          <option key={img} value={img}>{img}</option>
-                        ))}
-                      </select>
+                        <SelectTrigger className="w-full bg-background border-input">
+                          <SelectValue placeholder="Selecione uma imagem" />
+                        </SelectTrigger>
+                        <SelectContent className="max-h-[300px]">
+                          {availableImages.map(img => (
+                            <SelectItem key={img} value={img} className="py-2 cursor-pointer">
+                              <div className="flex items-center gap-3">
+                                <div className="h-8 w-10 shrink-0 bg-muted rounded overflow-hidden">
+                                  <img src={img} alt={img} className="h-full w-full object-cover" />
+                                </div>
+                                <span className="truncate max-w-[150px]">{img}</span>
+                              </div>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                       <Button 
                         onClick={() => handleSave(slot.id, slot.category, slot.desc)}
                         disabled={saving === slot.id}
