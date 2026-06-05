@@ -1,7 +1,7 @@
 import emailjs from '@emailjs/browser';
 
 const EMAILJS_SERVICE_ID = 'service_31bx367';
-const EMAILJS_TEMPLATE_ID = 'template_k8yt3r9';
+const EMAILJS_TEMPLATE_ID = 'template_cy9j2jy';
 const EMAILJS_PUBLIC_KEY = 'DEfgl9bdbDyroIT-t';
 
 interface EmailTemplateParams {
