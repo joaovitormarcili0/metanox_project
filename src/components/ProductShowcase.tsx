@@ -1,45 +1,48 @@
 import { ArrowRight } from "lucide-react";
-
-const products = [
-  {
-    title: "Guarda-corpo",
-    benefit: "Segurança e elegância para sacadas e escadas",
-    image: "/hero.png",
-    link: "/produtos#sob-medida",
-  },
-  {
-    title: "Puxador",
-    benefit: "Acabamento premium para portas de vidro e madeira",
-    image: "/puxador.png",
-    link: "/produtos#loja-online",
-  },
-  {
-    title: "Spider",
-    benefit: "Fachadas envidraçadas com fixação de alta performance",
-    image: "/spider.png",
-    link: "/produtos#loja-online",
-  },
-  {
-    title: "Corrimão",
-    benefit: "Conforto e acessibilidade com design moderno",
-    image: "/residencia.png",
-    link: "/produtos#sob-medida",
-  },
-  {
-    title: "Kit Box Banheiro",
-    benefit: "Kit completo em aço inox para box de vidro",
-    image: "/puxador.png",
-    link: "/produtos#loja-online",
-  },
-  {
-    title: "Barra de Apoio",
-    benefit: "Acessibilidade e segurança para todos os ambientes",
-    image: "/residencia.png",
-    link: "/produtos#loja-online",
-  },
-];
+import { useImages } from "@/contexts/ImagesContext";
 
 const ProductShowcase = () => {
+  const { getImage } = useImages();
+
+  const products = [
+    {
+      title: "Guarda-corpo",
+      benefit: "Segurança e elegância para sacadas e escadas",
+      image: getImage('showcase_1', '/hero.png'),
+      link: "/produtos#sob-medida",
+    },
+    {
+      title: "Puxador",
+      benefit: "Acabamento premium para portas de vidro e madeira",
+      image: getImage('showcase_2', '/puxador.png'),
+      link: "/produtos#loja-online",
+    },
+    {
+      title: "Spider",
+      benefit: "Fachadas envidraçadas com fixação de alta performance",
+      image: getImage('showcase_3', '/spider.png'),
+      link: "/produtos#loja-online",
+    },
+    {
+      title: "Corrimão",
+      benefit: "Conforto e acessibilidade com design moderno",
+      image: getImage('showcase_4', '/residencia.png'),
+      link: "/produtos#sob-medida",
+    },
+    {
+      title: "Kit Box Banheiro",
+      benefit: "Kit completo em aço inox para box de vidro",
+      image: getImage('showcase_5', '/puxador.png'),
+      link: "/produtos#loja-online",
+    },
+    {
+      title: "Barra de Apoio",
+      benefit: "Acessibilidade e segurança para todos os ambientes",
+      image: getImage('showcase_6', '/residencia.png'),
+      link: "/produtos#loja-online",
+    },
+  ];
+
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4 lg:px-8">

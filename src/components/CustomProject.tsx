@@ -1,7 +1,10 @@
 import { MessageCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useImages } from "@/contexts/ImagesContext";
 
 const CustomProject = () => {
+  const { getImage } = useImages();
+
   return (
     <section className="py-24 bg-foreground text-background">
       <div className="container mx-auto px-4 lg:px-8">
@@ -9,7 +12,7 @@ const CustomProject = () => {
           {/* Image */}
           <div className="relative rounded-2xl overflow-hidden">
             <img
-              src="/custom.png"
+              src={getImage('custom_project_1', '/custom.png')}
               alt="Projeto personalizado em aço inox"
               className="w-full aspect-[4/3] object-cover"
             />

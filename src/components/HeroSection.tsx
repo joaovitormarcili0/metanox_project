@@ -3,24 +3,27 @@ import { ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-const slides = [
-  {
-    image: "/hero-1.png",
-    alt: "Guarda-corpo em aço inox com vidro",
-  },
-  {
-    image: "/hero-2.png",
-    alt: "Máquina de corte a laser industrial",
-  },
-  {
-    image: "/hero-3.png",
-    alt: "Fachada de vidro com spider em aço inox",
-  },
-];
+import { useImages } from "@/contexts/ImagesContext";
 
 const HeroSection = () => {
+  const { getImage } = useImages();
   const [current, setCurrent] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const slides = [
+    {
+      image: getImage('hero_slide_1', '/hero-1.png'),
+      alt: "Guarda-corpo em aço inox com vidro",
+    },
+    {
+      image: getImage('hero_slide_2', '/hero-2.png'),
+      alt: "Máquina de corte a laser industrial",
+    },
+    {
+      image: getImage('hero_slide_3', '/hero-3.png'),
+      alt: "Fachada de vidro com spider em aço inox",
+    },
+  ];
 
   const goToSlide = useCallback(
     (index: number) => {

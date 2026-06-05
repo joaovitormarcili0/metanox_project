@@ -3,53 +3,55 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
-const services = [
-  {
-    image: "/hero-2.png",
-    title: "Corte a Laser de Chapa",
-    description: "Corte de chapas de aço inoxidável com tecnologia laser de alta potência. Precisão milimétrica, acabamento perfeito e velocidade de produção para atender projetos de qualquer escala.",
-    features: [
-      "Chapas de aço inox de diversas espessuras",
-      "Corte de geometrias complexas com alta precisão",
-      "Acabamento limpo sem rebarbas",
-      "Ideal para peças decorativas, industriais e estruturais",
-      "Produção em série ou peças únicas",
-      "Otimização de material para redução de desperdício",
-    ],
-    materials: ["Aço Inox 304", "Aço Inox 316", "Aço Inox 430", "Aço Carbono", "Alumínio"],
-  },
-  {
-    image: "/laser_tubo.png",
-    title: "Corte a Laser de Tubo",
-    description: "Corte a laser de tubos redondos, quadrados e retangulares em aço inoxidável. Tecnologia que permite cortes precisos em múltiplos ângulos e geometrias complexas diretamente no tubo.",
-    features: [
-      "Tubos redondos, quadrados e retangulares",
-      "Cortes em ângulos e encaixes perfeitos",
-      "Furação e recortes no próprio tubo",
-      "Eliminação de etapas manuais de acabamento",
-      "Precisão dimensional superior",
-      "Redução significativa no tempo de montagem",
-    ],
-    materials: ["Tubos Redondos", "Tubos Quadrados", "Tubos Retangulares", "Perfis Especiais"],
-  },
-  {
-    image: "/dobra.png",
-    title: "Dobra CNC",
-    description: "Dobras em chapas de aço inoxidável com prensa dobradeira CNC de última geração. Controle numérico computadorizado para garantir ângulos perfeitos e repetibilidade em grandes lotes.",
-    features: [
-      "Prensa dobradeira CNC de alta tonelagem",
-      "Ângulos precisos com repetibilidade garantida",
-      "Dobras simples e compostas",
-      "Chapas de diversas espessuras",
-      "Programação CNC para lotes grandes",
-      "Controle de qualidade dimensional rigoroso",
-    ],
-    materials: ["Aço Inox 304", "Aço Inox 316", "Aço Inox 430", "Aço Carbono"],
-  },
-];
-
+import { useImages } from "@/contexts/ImagesContext";
 const Servicos = () => {
+  const { getImage } = useImages();
+
+  const services = [
+    {
+      image: getImage('servico_1', '/hero-2.png'),
+      title: "Corte a Laser de Chapa",
+      description: "Corte de chapas de aço inoxidável com tecnologia laser de alta potência. Precisão milimétrica, acabamento perfeito e velocidade de produção para atender projetos de qualquer escala.",
+      features: [
+        "Chapas de aço inox de diversas espessuras",
+        "Corte de geometrias complexas com alta precisão",
+        "Acabamento limpo sem rebarbas",
+        "Ideal para peças decorativas, industriais e estruturais",
+        "Produção em série ou peças únicas",
+        "Otimização de material para redução de desperdício",
+      ],
+      materials: ["Aço Inox 304", "Aço Inox 316", "Aço Inox 430", "Aço Carbono", "Alumínio"],
+    },
+    {
+      image: getImage('servico_2', '/laser_tubo.png'),
+      title: "Corte a Laser de Tubo",
+      description: "Corte a laser de tubos redondos, quadrados e retangulares em aço inoxidável. Tecnologia que permite cortes precisos em múltiplos ângulos e geometrias complexas diretamente no tubo.",
+      features: [
+        "Tubos redondos, quadrados e retangulares",
+        "Cortes em ângulos e encaixes perfeitos",
+        "Furação e recortes no próprio tubo",
+        "Eliminação de etapas manuais de acabamento",
+        "Precisão dimensional superior",
+        "Redução significativa no tempo de montagem",
+      ],
+      materials: ["Tubos Redondos", "Tubos Quadrados", "Tubos Retangulares", "Perfis Especiais"],
+    },
+    {
+      image: getImage('servico_3', '/dobra.png'),
+      title: "Dobra CNC",
+      description: "Dobras em chapas de aço inoxidável com prensa dobradeira CNC de última geração. Controle numérico computadorizado para garantir ângulos perfeitos e repetibilidade em grandes lotes.",
+      features: [
+        "Prensa dobradeira CNC de alta tonelagem",
+        "Ângulos precisos com repetibilidade garantida",
+        "Dobras simples e compostas",
+        "Chapas de diversas espessuras",
+        "Programação CNC para lotes grandes",
+        "Controle de qualidade dimensional rigoroso",
+      ],
+      materials: ["Aço Inox 304", "Aço Inox 316", "Aço Inox 430", "Aço Carbono"],
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Header />

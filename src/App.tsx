@@ -9,6 +9,9 @@ import Servicos from "./pages/Servicos.tsx";
 import Produtos from "./pages/Produtos.tsx";
 import Orcamento from "./pages/Orcamento.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import { ImagesProvider } from "./contexts/ImagesContext.tsx";
+import AdminLayout from "./layouts/AdminLayout.tsx";
+import AdminDashboard from "./pages/admin/AdminDashboard.tsx";
 
 const queryClient = new QueryClient();
 
@@ -18,14 +21,22 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/servicos" element={<Servicos />} />
-          <Route path="/produtos" element={<Produtos />} />
-          <Route path="/orcamento" element={<Orcamento />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <WhatsAppFloat />
+        <ImagesProvider>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/servicos" element={<Servicos />} />
+            <Route path="/produtos" element={<Produtos />} />
+            <Route path="/orcamento" element={<Orcamento />} />
+            
+            {/* Admin Routes */}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminDashboard />} />
+            </Route>
+
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <WhatsAppFloat />
+        </ImagesProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

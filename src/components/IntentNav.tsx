@@ -1,45 +1,48 @@
 import { Building2, GlassWater, Accessibility, Home, Puzzle, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const intents = [
-  {
-    icon: Building2,
-    title: "Para Obras",
-    description: "Guarda-corpos, corrimãos e estruturas para construção civil.",
-    image: "/obras.png",
-    href: "/produtos#sob-medida",
-  },
-  {
-    icon: GlassWater,
-    title: "Para Vidraçaria",
-    description: "Ferragens, torres, spiders e perfis para envidraçamento.",
-    image: "/spider.png",
-    href: "/produtos#loja-online",
-  },
-  {
-    icon: Accessibility,
-    title: "Para Acessibilidade",
-    description: "Barras de apoio e soluções para acessibilidade.",
-    image: "/residencia.png",
-    href: "/produtos#loja-online",
-  },
-  {
-    icon: Home,
-    title: "Para Residências",
-    description: "Puxadores, box para banheiro, toalheiros e acabamentos.",
-    image: "/residencia.png",
-    href: "/produtos#loja-online",
-  },
-  {
-    icon: Puzzle,
-    title: "Peças Avulsas",
-    description: "Prolongadores, ferragens e componentes de reposição.",
-    image: "/puxador.png",
-    href: "/produtos#loja-online",
-  },
-];
+import { useImages } from "@/contexts/ImagesContext";
 
 const IntentNav = () => {
+  const { getImage } = useImages();
+
+  const intents = [
+    {
+      icon: Building2,
+      title: "Para Obras",
+      description: "Guarda-corpos, corrimãos e estruturas para construção civil.",
+      image: getImage('intent_1', '/obras.png'),
+      href: "/produtos#sob-medida",
+    },
+    {
+      icon: GlassWater,
+      title: "Para Vidraçaria",
+      description: "Ferragens, torres, spiders e perfis para envidraçamento.",
+      image: getImage('intent_2', '/spider.png'),
+      href: "/produtos#loja-online",
+    },
+    {
+      icon: Accessibility,
+      title: "Para Acessibilidade",
+      description: "Barras de apoio e soluções para acessibilidade.",
+      image: getImage('intent_3', '/residencia.png'),
+      href: "/produtos#loja-online",
+    },
+    {
+      icon: Home,
+      title: "Para Residências",
+      description: "Puxadores, box para banheiro, toalheiros e acabamentos.",
+      image: getImage('intent_4', '/residencia.png'),
+      href: "/produtos#loja-online",
+    },
+    {
+      icon: Puzzle,
+      title: "Peças Avulsas",
+      description: "Prolongadores, ferragens e componentes de reposição.",
+      image: getImage('intent_5', '/puxador.png'),
+      href: "/produtos#loja-online",
+    },
+  ];
+
   return (
     <section className="py-24 bg-muted">
       <div className="container mx-auto px-4 lg:px-8">

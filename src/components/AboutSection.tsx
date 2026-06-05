@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useImages } from "@/contexts/ImagesContext";
 
 const stats = [
   { value: 26, suffix: "", label: "Anos de Experiência" },
@@ -56,6 +57,8 @@ const AnimatedCounter = ({
 };
 
 const AboutSection = () => {
+  const { getImage } = useImages();
+
   return (
     <section id="sobre" className="py-24 bg-background">
       <div className="container mx-auto px-4 lg:px-8">
@@ -104,7 +107,7 @@ const AboutSection = () => {
           <div className="relative">
             <div className="aspect-[4/3] rounded-2xl overflow-hidden">
               <img
-                src="/obras.png"
+                src={getImage('about_image_1', '/obras.png')}
                 alt="Metanox — Produção industrial em aço inox"
                 className="w-full h-full object-cover"
               />

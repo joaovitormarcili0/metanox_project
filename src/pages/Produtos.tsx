@@ -8,184 +8,184 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useImages } from "@/contexts/ImagesContext";
 
 /* ───────────────────────── PRODUTOS SOB MEDIDA ───────────────────────── */
-
-const produtosSobMedida = [
-  {
-    image: "/guarda-corpo-inox-conteudo-03.jpg",
-    title: "Guarda-corpo",
-    description:
-      "Guarda-corpos em aço inox para escadas, sacadas, mezaninos e rampas. Modelos com tubo redondo, quadrado, com vidro e combinações.",
-    tags: ["Tubo Redondo", "Tubo Quadrado", "Com Vidro", "Redondo e Quadrado"],
-    highlight: true,
-  },
-  {
-    image: "/residencia.png",
-    title: "Corrimão",
-    description:
-      "Corrimãos em aço inox para escadas e rampas. Modelos redondos e quadrados/retangulares, fabricados sob medida.",
-    tags: ["Redondo", "Quadrado / Retangular"],
-  },
-  {
-    image: "/bate_carrinho.png",
-    title: "Bate Carrinho & Check Out",
-    description:
-      "Proteções em aço inox para supermercados, lojas e áreas comerciais. Resistência e durabilidade para ambientes de alto tráfego.",
-    tags: ["Supermercados", "Comércios"],
-  },
-  {
-    image: "/suporte_tv.png",
-    title: "Suporte Giratório p/ TV",
-    description:
-      "Suportes giratórios em aço inox para televisores. Design moderno e funcionalidade premium. Marca PipesTV.",
-    tags: ["PipesTV", "Giratório", "Inox"],
-    externalLink: "https://www.pipestv.com.br/",
-  },
-  {
-    image: "/hero-3.png",
-    title: "Portão, Muro de Vidro & Fachada",
-    description:
-      "Fachadas, portões, muros de vidro e portais com estrutura em aço inox. Elegância e segurança para residências e comércios.",
-    tags: ["Fachada", "Portão", "Muro de Vidro", "Portal"],
-    highlight: true,
-  },
-  {
-    image: "/pia_inox.png",
-    title: "Pia, Mesa & Tanque",
-    description:
-      "Pias, mesas, tanques e mobiliário em aço inox para cozinhas industriais, padarias, clínicas e hospitais. Projetos sob medida.",
-    tags: ["Cozinha Industrial", "Padaria", "Clínica", "Hospital"],
-  },
-  {
-    image: "/coifa_inox.png",
-    title: "Coifa & Tubulação",
-    description:
-      "Coifas de 1, 2, 3 ou 4 águas e tubulações em aço inox. Soluções para ambientes industriais e residenciais.",
-    tags: ["Coifa", "Tubulação", "Industrial", "Residencial"],
-  },
-  {
-    image: "/armario_inox.png",
-    title: "Armário, Prateleira & Estante",
-    description:
-      "Armários, prateleiras, estantes e mobiliário industrial em aço inox. Ideal para cozinhas, padarias, clínicas e hospitais.",
-    tags: ["Armário", "Prateleira", "Estante", "Móveis Industriais"],
-  },
-  {
-    image: "/obras_de_arte_inox.png",
-    title: "Obras de Arte",
-    description:
-      "Esculturas e peças artísticas em aço inox fabricadas sob encomenda. Transformamos conceitos artísticos em realidade.",
-    tags: ["Esculturas", "Peças Artísticas"],
-  },
-  {
-    image: "/obras_de_arte_inox.png",
-    title: "Decorativo & Outros",
-    description:
-      "Produtos decorativos diversos: acessórios para churrasqueira, totens, mesas, bancos, letras caixa e muito mais em aço inox.",
-    tags: ["Churrasqueira", "Totens", "Mesas", "Letras Caixa", "Outros"],
-  },
-];
-
-/* ───────────────────────── LOJA ONLINE ───────────────────────── */
-
-const produtosLoja = [
-  {
-    image: "/puxador.png",
-    title: "Ferragens",
-    description: "Dobradiças, kits para portas pivotantes, fechaduras e demais ferragens em aço inox.",
-    subcategories: ["Dobradiças", "Fechaduras", "Kits"],
-    link: "https://www.loja.metanox.com.br/ferragens",
-  },
-  {
-    image: "/spider.png",
-    title: "Prolongadores",
-    description: "Prolongadores em aço inox nos formatos quadrado e redondo.",
-    subcategories: ["Quadrados", "Redondos"],
-    link: "https://www.loja.metanox.com.br/prolongadores",
-  },
-  {
-    image: "/residencia.png",
-    title: "Kit Box p/ Banheiro",
-    description: "Kits completos para box de banheiro em aço inox.",
-    subcategories: ["Abrir Simples", "De Canto", "Frontal"],
-    link: "https://www.loja.metanox.com.br/kit-box",
-  },
-  {
-    image: "/puxador.png",
-    title: "Kit Pivotante",
-    description: "Kits completos para portas pivotantes em aço inox.",
-    subcategories: [],
-    link: "https://www.loja.metanox.com.br/kit-pivotante-23077890",
-  },
-  {
-    image: "/residencia.png",
-    title: "Toalheiro",
-    description: "Toalheiros em aço inox com design moderno e durável.",
-    subcategories: [],
-    link: "https://www.loja.metanox.com.br/toalheiro",
-  },
-  {
-    image: "/spider.png",
-    title: "Torres",
-    description: "Torres em aço inox para fixação de vidros.",
-    subcategories: ["Pinça", "Redondas"],
-    link: "https://www.loja.metanox.com.br/torres",
-  },
-  {
-    image: "/hero-3.png",
-    title: "Spiders",
-    description: "Sistemas spider em aço inox para fachadas e envidraçamento.",
-    subcategories: ["Acessórios", "Spider Completo"],
-    link: "https://www.loja.metanox.com.br/spider",
-  },
-  {
-    image: "/puxador.png",
-    title: "Puxadores",
-    description: "Puxadores em aço inox para portas de vidro e madeira.",
-    subcategories: ["Redondo", "Retangulares"],
-    link: "https://www.loja.metanox.com.br/puxadores",
-  },
-  {
-    image: "/obras.png",
-    title: "Perfil U",
-    description: "Perfis U em aço inox para acabamento de vidros.",
-    subcategories: [],
-    link: "https://www.loja.metanox.com.br/perfil-u",
-  },
-  {
-    image: "/residencia.png",
-    title: "Barras de Apoio",
-    description: "Barras de apoio acessíveis em inox para áreas molhadas.",
-    subcategories: ["Em Ângulo", "Em L", "Em U", "Reta"],
-    link: "https://www.loja.metanox.com.br/barras-de-apoio",
-  },
-  {
-    image: "/hero-1.png",
-    title: "Caixas de Correio",
-    description: "Caixas de correio em aço inox com acabamento premium.",
-    subcategories: [],
-    link: "https://www.loja.metanox.com.br/caixas-de-correio-23055476",
-  },
-  {
-    image: "/dobra.png",
-    title: "Caixas de Hidrante",
-    description: "Caixas de hidrante em aço inox para edificações.",
-    subcategories: ["Dupla", "Simples"],
-    link: "https://www.loja.metanox.com.br/caixas-de-hidrante",
-  },
-  {
-    image: "/suporte_tv.png",
-    title: "Suporte de TV",
-    description: "Suportes em aço inox para televisores.",
-    subcategories: ["Móvel", "Teto", "Teto/Móvel"],
-    link: "https://www.loja.metanox.com.br/suporte-de-tv",
-  },
-];
-
 /* ───────────────────────── PAGE COMPONENT ───────────────────────── */
 
 const Produtos = () => {
+  const { getImage } = useImages();
+
+  const produtosSobMedida = [
+    {
+      image: getImage('produto_sobmedida_1', '/guarda-corpo-inox-conteudo-03.jpg'),
+      title: "Guarda-corpo",
+      description:
+        "Guarda-corpos em aço inox para escadas, sacadas, mezaninos e rampas. Modelos com tubo redondo, quadrado, com vidro e combinações.",
+      tags: ["Tubo Redondo", "Tubo Quadrado", "Com Vidro", "Redondo e Quadrado"],
+      highlight: true,
+    },
+    {
+      image: getImage('produto_sobmedida_2', '/residencia.png'),
+      title: "Corrimão",
+      description:
+        "Corrimãos em aço inox para escadas e rampas. Modelos redondos e quadrados/retangulares, fabricados sob medida.",
+      tags: ["Redondo", "Quadrado / Retangular"],
+    },
+    {
+      image: getImage('produto_sobmedida_3', '/bate_carrinho.png'),
+      title: "Bate Carrinho & Check Out",
+      description:
+        "Proteções em aço inox para supermercados, lojas e áreas comerciais. Resistência e durabilidade para ambientes de alto tráfego.",
+      tags: ["Supermercados", "Comércios"],
+    },
+    {
+      image: getImage('produto_sobmedida_4', '/suporte_tv.png'),
+      title: "Suporte Giratório p/ TV",
+      description:
+        "Suportes giratórios em aço inox para televisores. Design moderno e funcionalidade premium. Marca PipesTV.",
+      tags: ["PipesTV", "Giratório", "Inox"],
+      externalLink: "https://www.pipestv.com.br/",
+    },
+    {
+      image: getImage('produto_sobmedida_5', '/hero-3.png'),
+      title: "Portão, Muro de Vidro & Fachada",
+      description:
+        "Fachadas, portões, muros de vidro e portais com estrutura em aço inox. Elegância e segurança para residências e comércios.",
+      tags: ["Fachada", "Portão", "Muro de Vidro", "Portal"],
+      highlight: true,
+    },
+    {
+      image: getImage('produto_sobmedida_6', '/pia_inox.png'),
+      title: "Pia, Mesa & Tanque",
+      description:
+        "Pias, mesas, tanques e mobiliário em aço inox para cozinhas industriais, padarias, clínicas e hospitais. Projetos sob medida.",
+      tags: ["Cozinha Industrial", "Padaria", "Clínica", "Hospital"],
+    },
+    {
+      image: getImage('produto_sobmedida_7', '/coifa_inox.png'),
+      title: "Coifa & Tubulação",
+      description:
+        "Coifas de 1, 2, 3 ou 4 águas e tubulações em aço inox. Soluções para ambientes industriais e residenciais.",
+      tags: ["Coifa", "Tubulação", "Industrial", "Residencial"],
+    },
+    {
+      image: getImage('produto_sobmedida_8', '/armario_inox.png'),
+      title: "Armário, Prateleira & Estante",
+      description:
+        "Armários, prateleiras, estantes e mobiliário industrial em aço inox. Ideal para cozinhas, padarias, clínicas e hospitais.",
+      tags: ["Armário", "Prateleira", "Estante", "Móveis Industriais"],
+    },
+    {
+      image: getImage('produto_sobmedida_9', '/obras_de_arte_inox.png'),
+      title: "Obras de Arte",
+      description:
+        "Esculturas e peças artísticas em aço inox fabricadas sob encomenda. Transformamos conceitos artísticos em realidade.",
+      tags: ["Esculturas", "Peças Artísticas"],
+    },
+    {
+      image: getImage('produto_sobmedida_10', '/obras_de_arte_inox.png'),
+      title: "Decorativo & Outros",
+      description:
+        "Produtos decorativos diversos: acessórios para churrasqueira, totens, mesas, bancos, letras caixa e muito mais em aço inox.",
+      tags: ["Churrasqueira", "Totens", "Mesas", "Letras Caixa", "Outros"],
+    },
+  ];
+
+  const produtosLoja = [
+    {
+      image: getImage('produto_loja_1', '/puxador.png'),
+      title: "Ferragens",
+      description: "Dobradiças, kits para portas pivotantes, fechaduras e demais ferragens em aço inox.",
+      subcategories: ["Dobradiças", "Fechaduras", "Kits"],
+      link: "https://www.loja.metanox.com.br/ferragens",
+    },
+    {
+      image: getImage('produto_loja_2', '/spider.png'),
+      title: "Prolongadores",
+      description: "Prolongadores em aço inox nos formatos quadrado e redondo.",
+      subcategories: ["Quadrados", "Redondos"],
+      link: "https://www.loja.metanox.com.br/prolongadores",
+    },
+    {
+      image: getImage('produto_loja_3', '/residencia.png'),
+      title: "Kit Box p/ Banheiro",
+      description: "Kits completos para box de banheiro em aço inox.",
+      subcategories: ["Abrir Simples", "De Canto", "Frontal"],
+      link: "https://www.loja.metanox.com.br/kit-box",
+    },
+    {
+      image: getImage('produto_loja_4', '/puxador.png'),
+      title: "Kit Pivotante",
+      description: "Kits completos para portas pivotantes em aço inox.",
+      subcategories: [],
+      link: "https://www.loja.metanox.com.br/kit-pivotante-23077890",
+    },
+    {
+      image: getImage('produto_loja_5', '/residencia.png'),
+      title: "Toalheiro",
+      description: "Toalheiros em aço inox com design moderno e durável.",
+      subcategories: [],
+      link: "https://www.loja.metanox.com.br/toalheiro",
+    },
+    {
+      image: getImage('produto_loja_6', '/spider.png'),
+      title: "Torres",
+      description: "Torres em aço inox para fixação de vidros.",
+      subcategories: ["Pinça", "Redondas"],
+      link: "https://www.loja.metanox.com.br/torres",
+    },
+    {
+      image: getImage('produto_loja_7', '/hero-3.png'),
+      title: "Spiders",
+      description: "Sistemas spider em aço inox para fachadas e envidraçamento.",
+      subcategories: ["Acessórios", "Spider Completo"],
+      link: "https://www.loja.metanox.com.br/spider",
+    },
+    {
+      image: getImage('produto_loja_8', '/puxador.png'),
+      title: "Puxadores",
+      description: "Puxadores em aço inox para portas de vidro e madeira.",
+      subcategories: ["Redondo", "Retangulares"],
+      link: "https://www.loja.metanox.com.br/puxadores",
+    },
+    {
+      image: getImage('produto_loja_9', '/obras.png'),
+      title: "Perfil U",
+      description: "Perfis U em aço inox para acabamento de vidros.",
+      subcategories: [],
+      link: "https://www.loja.metanox.com.br/perfil-u",
+    },
+    {
+      image: getImage('produto_loja_10', '/residencia.png'),
+      title: "Barras de Apoio",
+      description: "Barras de apoio acessíveis em inox para áreas molhadas.",
+      subcategories: ["Em Ângulo", "Em L", "Em U", "Reta"],
+      link: "https://www.loja.metanox.com.br/barras-de-apoio",
+    },
+    {
+      image: getImage('produto_loja_11', '/hero-1.png'),
+      title: "Caixas de Correio",
+      description: "Caixas de correio em aço inox com acabamento premium.",
+      subcategories: [],
+      link: "https://www.loja.metanox.com.br/caixas-de-correio-23055476",
+    },
+    {
+      image: getImage('produto_loja_12', '/dobra.png'),
+      title: "Caixas de Hidrante",
+      description: "Caixas de hidrante em aço inox para edificações.",
+      subcategories: ["Dupla", "Simples"],
+      link: "https://www.loja.metanox.com.br/caixas-de-hidrante",
+    },
+    {
+      image: getImage('produto_loja_13', '/suporte_tv.png'),
+      title: "Suporte de TV",
+      description: "Suportes em aço inox para televisores.",
+      subcategories: ["Móvel", "Teto", "Teto/Móvel"],
+      link: "https://www.loja.metanox.com.br/suporte-de-tv",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Header />

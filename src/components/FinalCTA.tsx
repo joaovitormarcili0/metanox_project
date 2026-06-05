@@ -1,20 +1,28 @@
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useImages } from "@/contexts/ImagesContext";
 
 const FinalCTA = () => {
+  const { getImage } = useImages();
+  const bgImage = getImage('final_cta_bg', '');
+
   return (
     <section className="py-32 bg-foreground text-background relative overflow-hidden">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-            backgroundSize: "40px 40px",
-          }}
-        />
+      {/* Background Image or Pattern */}
+      <div className={`absolute inset-0 ${bgImage ? 'opacity-20' : 'opacity-[0.03]'}`}>
+        {bgImage ? (
+          <img src={bgImage} alt="" className="w-full h-full object-cover" />
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+              backgroundSize: "40px 40px",
+            }}
+          />
+        )}
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10 text-center">
