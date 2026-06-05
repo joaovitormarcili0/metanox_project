@@ -32,6 +32,38 @@ const AVAILABLE_SLOTS = [
   // Projetos Especiais
   { id: 'custom_project_1', category: 'Projetos Especiais', desc: 'Imagem da seção Sob Medida (ex: /custom.png)' },
   
+  // Produtos Sob Medida
+  { id: 'produto_sobmedida_1', category: 'Produtos Sob Medida', desc: 'Guarda-corpo' },
+  { id: 'produto_sobmedida_2', category: 'Produtos Sob Medida', desc: 'Corrimão' },
+  { id: 'produto_sobmedida_3', category: 'Produtos Sob Medida', desc: 'Bate Carrinho' },
+  { id: 'produto_sobmedida_4', category: 'Produtos Sob Medida', desc: 'Suporte TV' },
+  { id: 'produto_sobmedida_5', category: 'Produtos Sob Medida', desc: 'Portão e Fachada' },
+  { id: 'produto_sobmedida_6', category: 'Produtos Sob Medida', desc: 'Pia e Mesa' },
+  { id: 'produto_sobmedida_7', category: 'Produtos Sob Medida', desc: 'Coifa e Tubulação' },
+  { id: 'produto_sobmedida_8', category: 'Produtos Sob Medida', desc: 'Armário e Prateleira' },
+  { id: 'produto_sobmedida_9', category: 'Produtos Sob Medida', desc: 'Obras de Arte' },
+  { id: 'produto_sobmedida_10', category: 'Produtos Sob Medida', desc: 'Decorativo' },
+
+  // Loja Online
+  { id: 'produto_loja_1', category: 'Loja Online', desc: 'Ferragens' },
+  { id: 'produto_loja_2', category: 'Loja Online', desc: 'Prolongadores' },
+  { id: 'produto_loja_3', category: 'Loja Online', desc: 'Kit Box' },
+  { id: 'produto_loja_4', category: 'Loja Online', desc: 'Kit Pivotante' },
+  { id: 'produto_loja_5', category: 'Loja Online', desc: 'Toalheiro' },
+  { id: 'produto_loja_6', category: 'Loja Online', desc: 'Torres' },
+  { id: 'produto_loja_7', category: 'Loja Online', desc: 'Spiders' },
+  { id: 'produto_loja_8', category: 'Loja Online', desc: 'Puxadores' },
+  { id: 'produto_loja_9', category: 'Loja Online', desc: 'Perfil U' },
+  { id: 'produto_loja_10', category: 'Loja Online', desc: 'Barras de Apoio' },
+  { id: 'produto_loja_11', category: 'Loja Online', desc: 'Caixas de Correio' },
+  { id: 'produto_loja_12', category: 'Loja Online', desc: 'Caixas de Hidrante' },
+  { id: 'produto_loja_13', category: 'Loja Online', desc: 'Suporte de TV' },
+
+  // Serviços
+  { id: 'servico_1', category: 'Serviços', desc: 'Corte a Laser de Chapa' },
+  { id: 'servico_2', category: 'Serviços', desc: 'Corte a Laser de Tubo' },
+  { id: 'servico_3', category: 'Serviços', desc: 'Dobra CNC' },
+
   // Final CTA
   { id: 'final_cta_bg', category: 'Rodapé CTA', desc: 'Imagem de fundo do CTA final (ex: /custom.png)' },
 ];
