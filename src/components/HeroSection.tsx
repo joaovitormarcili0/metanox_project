@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -12,7 +12,7 @@ const HeroSection = () => {
   const [current, setCurrent] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const slides = [
+  const slides = useMemo(() => [
     {
       image: getImage('hero_slide_1', '/hero-1.png'),
       alt: "Guarda-corpo em aço inox com vidro",
@@ -25,7 +25,7 @@ const HeroSection = () => {
       image: getImage('hero_slide_3', '/hero-3.png'),
       alt: "Fachada de vidro com spider em aço inox",
     },
-  ];
+  ], [getImage]);
 
   const goToSlide = useCallback(
     (index: number) => {
@@ -43,7 +43,7 @@ const HeroSection = () => {
       goToSlide((current + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [current, goToSlide]);
+  }, [current, goToSlide, slides.length]);
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">

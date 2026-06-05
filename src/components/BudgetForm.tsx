@@ -114,10 +114,10 @@ const BudgetForm = () => {
         reset();
         setFile(null);
         toast.success("Orçamento enviado com sucesso!");
-      } catch (emailError: any) {
+      } catch (emailError: unknown) {
         console.error("Email error details:", emailError);
         // If EmailJS fails with 4xx, it's likely a quota or auth issue
-        if (emailError?.status >= 400 && emailError?.status < 500) {
+        if (emailError && typeof emailError === 'object' && 'status' in emailError && (emailError as any).status >= 400 && (emailError as any).status < 500) {
           await markQuotaExhausted();
           toast.error("O limite de orçamentos online foi atingido. Redirecionando para o WhatsApp...");
           // Fallback manually sending to Whatsapp
